@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE AI Percentile Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 90%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            display: block;
+            margin: 10px auto;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>AI-Powered MHT CET Percentile Predictor</h2>
+    <input type="number" id="marksInput" min="0" max="200" placeholder="Enter your marks (0-200)...">
+    <button onclick="predictPercentile()">Predict My Percentile</button>
+    <p id="result"></p>
+
+    <script>
+        const percentileData = [
+            { range: [195, 200], percentile: "99.99+" },
+            { range: [190, 195], percentile: "99.99+" },
+            { range: [185, 190], percentile: "99.98+" },
+            { range: [180, 185], percentile: "99.96 - 99.98+" },
+            { range: [175, 180], percentile: "99.93 - 99.96+" },
+            { range: [170, 175], percentile: "99.90+" },
+            { range: [165, 170], percentile: "99.70 - 99.90+" },
+            { range: [160, 165], percentile: "99.50 - 99.90+" },
+            { range: [155, 160], percentile: "99.20 - 99.50+" },
+            { range: [150, 155], percentile: "98.80 - 99.20+" },
+            { range: [145, 150], percentile: "98.30 - 98.80+" },
+            { range: [140, 145], percentile: "98.00 - 99.00+" },
+            { range: [135, 140], percentile: "97.50 - 98.00+" },
+            { range: [130, 135], percentile: "97.00 - 98.00+" },
+            { range: [125, 130], percentile: "96.50 - 97.00+" },
+            { range: [120, 125], percentile: "96.00 - 97.00+" },
+            { range: [115, 120], percentile: "95.50 - 96.00+" },
+            { range: [110, 115], percentile: "95.00 - 96.00+" },
+            { range: [105, 110], percentile: "94.00 - 95.00+" },
+            { range: [100, 105], percentile: "93.50 - 95.00+" },
+            { range: [95, 100], percentile: "93.00 - 93.50+" },
+            { range: [90, 95], percentile: "91.00 - 93.00+" },
+            { range: [85, 90], percentile: "90.00 - 91.00+" },
+            { range: [80, 85], percentile: "88.00 - 90.00+" },
+            { range: [75, 80], percentile: "85.00 - 88.00+" },
+            { range: [70, 75], percentile: "80.00 - 85.00+" },
+            { range: [65, 70], percentile: "75.00 - 80.00+" },
+            { range: [60, 65], percentile: "70.00 - 75.00+" },
+            { range: [55, 60], percentile: "65.00 - 70.00+" },
+            { range: [50, 55], percentile: "60.00 - 65.00+" },
+            { range: [45, 50], percentile: "55.00 - 60.00+" },
+            { range: [40, 45], percentile: "50.00 - 55.00+" },
+            { range: [35, 40], percentile: "45.00 - 50.00+" },
+            { range: [30, 35], percentile: "40.00 - 45.00+" },
+            { range: [25, 30], percentile: "30.00 - 40.00+" },
+            { range: [20, 25], percentile: "20.00 - 30.00+" },
+            { range: [15, 20], percentile: "15.00 - 20.00+" },
+            { range: [10, 15], percentile: "10.00 - 15.00+" },
+            { range: [5, 10], percentile: "5.00 - 10.00+" },
+            { range: [0, 5], percentile: "0.00 - 5.00+" }
+        ];
+
+        function predictPercentile() {
+            const marks = parseInt(document.getElementById("marksInput").value);
+            let resultText = "Please enter a valid score between 0 and 200.";
+
+            if (!isNaN(marks) && marks >= 0 && marks <= 200) {
+                for (let data of percentileData) {
+                    if (marks >= data.range[0] && marks <= data.range[1]) {
+                        resultText = `Predicted Percentile: ${data.percentile}`;
+                        break;
+                    }
+                }
+            }
+            document.getElementById("result").innerText = resultText;
+        }
+    </script>
+</body>
+</html>
